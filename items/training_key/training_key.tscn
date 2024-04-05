@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://7xxmkk4ar12r"]
+
+[ext_resource type="Script" path="res://items/ItemBody.cs" id="1_la2cm"]
+[ext_resource type="PackedScene" uid="uid://bp03vkqpem8ke" path="res://storage/basic_inventory/inventory_slot.tscn" id="2_72pfu"]
+[ext_resource type="Resource" uid="uid://2g2og4r1eutu" path="res://items/training_key/training_key.tres" id="3_cywpa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm7mo"]
+albedo_color = Color(0.243137, 0.611765, 0.996078, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ra51q"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.03
+
+[sub_resource type="BoxMesh" id="BoxMesh_he3w7"]
+size = Vector3(0.03, 0.03, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5tipn"]
+size = Vector3(0.03, 0.03, 0.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2fis1"]
+size = Vector3(0.1, 0.1, 0.3)
+
+[node name="training_key" type="RigidBody3D" node_paths=PackedStringArray("slot")]
+collision_layer = 4
+collision_mask = 7
+mass = 0.01
+continuous_cd = true
+script = ExtResource("1_la2cm")
+slot = NodePath("inventory_slot")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0948718)
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("CylinderMesh_ra51q")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0364417)
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("BoxMesh_he3w7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0289385, 0, 0.0998478)
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("BoxMesh_5tipn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_2fis1")
+
+[node name="inventory_slot" parent="." instance=ExtResource("2_72pfu")]
+item = ExtResource("3_cywpa")

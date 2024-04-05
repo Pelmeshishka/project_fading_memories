@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://cwv2giojaq4xl"]
+
+[ext_resource type="Script" path="res://items/ItemBody.cs" id="1_yqklu"]
+[ext_resource type="PackedScene" uid="uid://bp03vkqpem8ke" path="res://storage/basic_inventory/inventory_slot.tscn" id="2_yhhfk"]
+[ext_resource type="Resource" uid="uid://dqf0q12aca2il" path="res://items/training_beltpack/training_beltpack.tres" id="3_rqptg"]
+[ext_resource type="Script" path="res://storage/basic_inventory/Inventory.cs" id="4_ka1h8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fiums"]
+size = Vector3(1.18, 0.2, 1.16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_83l4b"]
+size = Vector3(0.2, 0.5, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm7mo"]
+albedo_color = Color(0.243137, 0.611765, 0.996078, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_fiaju"]
+outer_radius = 0.6
+rings = 12
+ring_segments = 6
+
+[sub_resource type="BoxMesh" id="BoxMesh_imkg0"]
+size = Vector3(0.2, 0.5, 0.25)
+
+[node name="training_beltpack" type="RigidBody3D" node_paths=PackedStringArray("slot")]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_yqklu")
+slot = NodePath("inventory_slot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fiums")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.536006, -0.168642, -0.399244)
+shape = SubResource("BoxShape3D_83l4b")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.48867, -0.168642, -0.419535)
+shape = SubResource("BoxShape3D_83l4b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("TorusMesh_fiaju")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.530207, -0.162369, -0.404129)
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("BoxMesh_imkg0")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.498485, -0.162369, -0.431684)
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("BoxMesh_imkg0")
+
+[node name="inventory_slot" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("2_yhhfk")]
+item = ExtResource("3_rqptg")
+inventory = NodePath("../inventory")
+
+[node name="inventory" type="Node" parent="."]
+script = ExtResource("4_ka1h8")

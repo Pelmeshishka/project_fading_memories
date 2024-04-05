@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp03vkqpem8ke"]
+
+[ext_resource type="Script" path="res://storage/basic_inventory/InventorySlot.cs" id="1_4mc3k"]
+
+[node name="inventory_slot" type="Node"]
+script = ExtResource("1_4mc3k")

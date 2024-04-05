@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfcm027k5v8ks"]
+
+[ext_resource type="Script" path="res://doors/PushableDoor.cs" id="1_jvmf4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2w27p"]
+size = Vector3(1.2, 2.2, 0.15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_67p5e"]
+size = Vector3(1.2, 2.2, 0.15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7opad"]
+size = Vector3(0.25, 0.15, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xpoq"]
+size = Vector3(0.2, 2.4, 0.24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tqq8m"]
+size = Vector3(1.2, 0.2, 0.24)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s7ygw"]
+size = Vector3(0.2, 2.4, 0.24)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vjt0j"]
+size = Vector3(1.2, 0.2, 0.24)
+
+[node name="basic_door_1" type="Node3D"]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0.2)
+double_sided = false
+text = "Closed/Open"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.2, -0.2)
+double_sided = false
+text = "Closed/Open"
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." node_paths=PackedStringArray("label1", "label2", "grab_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11, 0)
+collision_layer = 4
+collision_mask = 6
+center_of_mass_mode = 1
+center_of_mass = Vector3(-0.6, 0, -0.07)
+script = ExtResource("1_jvmf4")
+label1 = NodePath("../Label3D")
+label2 = NodePath("../Label3D2")
+grab_point = NodePath("Marker3D")
+closed_pos = Vector3(0, 1.11, 0)
+hinge_pos = Vector3(-0.6, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_2w27p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_67p5e")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0)
+mesh = SubResource("BoxMesh_7opad")
+
+[node name="Marker3D" type="Marker3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 1.2, 0)
+shape = SubResource("BoxShape3D_7xpoq")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 1.2, 0)
+shape = SubResource("BoxShape3D_7xpoq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
+shape = SubResource("BoxShape3D_tqq8m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 1.2, 0)
+mesh = SubResource("BoxMesh_s7ygw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 1.2, 0)
+mesh = SubResource("BoxMesh_s7ygw")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47035e-08, 2.3, 0)
+mesh = SubResource("BoxMesh_vjt0j")
+
+[node name="HingeJoint3D" type="HingeJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.6, 0, 0)
+node_a = NodePath("../RigidBody3D")
+node_b = NodePath("../StaticBody3D")
+angular_limit/enable = true
+angular_limit/lower = 0.0

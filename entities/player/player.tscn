@@ -1,0 +1,454 @@
+[gd_scene load_steps=21 format=3 uid="uid://cwmsterkmu2tn"]
+
+[ext_resource type="Script" path="res://entities/player/Player.cs" id="1_xy52i"]
+[ext_resource type="PackedScene" uid="uid://d03rmtc21lvor" path="res://storage/humanoid_inventory/humanoid_inventory.tscn" id="2_putos"]
+[ext_resource type="PackedScene" uid="uid://2w8028h127wo" path="res://storage/humanoid_inventory/ui/ui_humanoid_inventory.tscn" id="3_jldi0"]
+[ext_resource type="Script" path="res://stats/StatSpeedDecrease.cs" id="4_ttpn2"]
+[ext_resource type="Script" path="res://stats/Stat.cs" id="4_u465q"]
+[ext_resource type="Script" path="res://stats/StatSpeedIncrease.cs" id="5_syyth"]
+[ext_resource type="Script" path="res://stats/EntityStats.cs" id="7_fw141"]
+[ext_resource type="Script" path="res://stats/drug/StatDrug.cs" id="7_gp8nj"]
+[ext_resource type="Script" path="res://stats/health/StatHealth.cs" id="7_urvo8"]
+[ext_resource type="Shader" path="res://VignetteShader.gdshader" id="13_xly2f"]
+[ext_resource type="Texture2D" uid="uid://cs5jnbxxx08bc" path="res://stats/blood/blood_over_icon.png" id="14_esfo8"]
+[ext_resource type="Script" path="res://stats/UIStatVignette.cs" id="14_lafdb"]
+[ext_resource type="Script" path="res://stats/UIStatBar.cs" id="15_geg85"]
+[ext_resource type="Texture2D" uid="uid://3nckcyausyx2" path="res://stats/blood/blood_process_icon.png" id="15_k5kuo"]
+[ext_resource type="Script" path="res://stats/UIStatLabel.cs" id="16_wxbdd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aevl6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2lvrl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jtg3j"]
+shader = ExtResource("13_xly2f")
+shader_parameter/vignette_intensity = 2.0
+shader_parameter/vignette_multiplier = 1.0
+shader_parameter/vignette_rgb = Color(0.376471, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktowp"]
+shader = ExtResource("13_xly2f")
+shader_parameter/vignette_intensity = 2.0
+shader_parameter/vignette_multiplier = 2.0
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xttwe"]
+
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("coll", "label_rot_X", "climb_cast", "climb_cast_side", "wall_cast", "stand_shape_cast", "ui_hum_inventory", "stats", "headY", "headX", "head", "inventory")]
+collision_layer = 6
+collision_mask = 7
+platform_on_leave = 2
+script = ExtResource("1_xy52i")
+coll = NodePath("CollisionShape3D")
+stand_height = 2.0
+headY_stand_pos = Vector3(0, 1.6, 0)
+crouch_height = 1.0
+headY_crouch_pos = Vector3(0, 0.8, 0)
+label_rot_X = NodePath("UIPlayerHUD/rot_x")
+climb_cast = NodePath("climb_cast")
+climb_cast_side = NodePath("climb_cast_side")
+wall_cast = NodePath("wall_cast")
+stand_shape_cast = NodePath("stand_shape_cast")
+ui_hum_inventory = NodePath("UIPlayerHUD/humanoid_inventory")
+stats = NodePath("humanoid_stats")
+headY = NodePath("Y")
+headX = NodePath("Y/X")
+head = NodePath("Y/X/Camera3D")
+inventory = NodePath("humanoid_inventory")
+walk_speed = 4.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_aevl6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_2lvrl")
+
+[node name="Y" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="X" type="Node3D" parent="Y"]
+
+[node name="Camera3D" type="Camera3D" parent="Y/X"]
+
+[node name="left_hand" type="Node3D" parent="Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.2, -0.5)
+
+[node name="right_hand" type="Node3D" parent="Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.2, -0.5)
+
+[node name="humanoid_inventory" parent="." instance=ExtResource("2_putos")]
+
+[node name="left_hand" parent="humanoid_inventory" index="0" node_paths=PackedStringArray("holding_container")]
+holding_container = NodePath("../../Y/left_hand")
+
+[node name="right_hand" parent="humanoid_inventory" index="1" node_paths=PackedStringArray("holding_container")]
+holding_container = NodePath("../../Y/right_hand")
+
+[node name="humanoid_stats" type="Node" parent="."]
+script = ExtResource("7_fw141")
+
+[node name="satiety" type="Node" parent="humanoid_stats"]
+script = ExtResource("4_ttpn2")
+_extra_val = 50.0
+selfHealEnabled = true
+healCount = 0.1
+damageType = 1
+
+[node name="water" type="Node" parent="humanoid_stats"]
+script = ExtResource("4_ttpn2")
+StatType = 1
+_extra_val = 50.0
+selfHealEnabled = true
+healCount = 0.1
+damageType = 2
+
+[node name="energy" type="Node" parent="humanoid_stats"]
+script = ExtResource("4_ttpn2")
+StatType = 2
+_extra_val = 100.0
+selfHealEnabled = true
+healCount = 0.1
+
+[node name="blood" type="Node" parent="humanoid_stats"]
+script = ExtResource("4_u465q")
+StatType = 3
+selfHealEnabled = true
+defaultIsMax = true
+healCount = 0.5
+
+[node name="pain" type="Node" parent="humanoid_stats"]
+script = ExtResource("4_u465q")
+StatType = 4
+Value = 0.0
+selfHealEnabled = true
+healCount = 0.02
+criticalIsMax = true
+
+[node name="andrenaline" type="Node" parent="humanoid_stats"]
+script = ExtResource("5_syyth")
+StatType = 5
+Value = 0.0
+selfHealEnabled = true
+healCount = 0.5
+criticalIsMax = true
+
+[node name="drug" type="Node" parent="humanoid_stats"]
+script = ExtResource("7_gp8nj")
+StatType = 6
+_extra_val = 50.0
+MaxValue = 50.0
+Value = 0.0
+selfHealEnabled = true
+healCount = 0.5
+damageType = 3
+criticalIsMax = true
+
+[node name="toxins" type="Node" parent="humanoid_stats"]
+script = ExtResource("4_u465q")
+StatType = 7
+Value = 0.0
+selfHealEnabled = true
+healCount = 0.1
+damageType = 3
+damageOnlyCritical = false
+criticalIsMax = true
+damageCount = 5.0
+
+[node name="sanity" type="Node" parent="humanoid_stats"]
+script = ExtResource("4_u465q")
+StatType = 8
+selfHealEnabled = true
+defaultIsMax = true
+healCount = 1.0
+
+[node name="self_control" type="Node" parent="humanoid_stats"]
+script = ExtResource("4_u465q")
+StatType = 9
+selfHealEnabled = true
+defaultIsMax = true
+healCount = 1.0
+
+[node name="health" type="Node" parent="humanoid_stats" node_paths=PackedStringArray("Pain", "Blood")]
+script = ExtResource("7_urvo8")
+Pain = NodePath("../pain")
+Blood = NodePath("../blood")
+StatType = 10
+selfHealEnabled = true
+defaultIsMax = true
+healCount = 1.0
+
+[node name="UIPlayerHUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="rot_x" type="Label" parent="UIPlayerHUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "X/Y"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="UIPlayerHUD"]
+custom_minimum_size = Vector2(2, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UIPlayerHUD"]
+layout_mode = 2
+offset_left = 997.0
+offset_top = 171.0
+offset_right = 1152.0
+offset_bottom = 431.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UIPlayerHUD/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="health" type="Label" parent="UIPlayerHUD/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.639216, 0.639216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+text = "Health: 1/1"
+horizontal_alignment = 2
+script = ExtResource("16_wxbdd")
+preText = "Health"
+
+[node name="blood_bar" type="TextureProgressBar" parent="UIPlayerHUD/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 125)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+value = 0.5
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("15_k5kuo")
+texture_over = ExtResource("14_esfo8")
+texture_progress = ExtResource("15_k5kuo")
+tint_under = Color(0.592157, 0.0196078, 0.0196078, 0.596078)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0.862745, 0.862745, 0.862745, 1)
+script = ExtResource("15_geg85")
+
+[node name="pain" type="Label" parent="UIPlayerHUD/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.639216, 0.639216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+text = "Pain: 100%"
+horizontal_alignment = 2
+script = ExtResource("16_wxbdd")
+preText = "Pain"
+
+[node name="adrenaline" type="Label" parent="UIPlayerHUD/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.639216, 0.639216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+text = "Adrenaline: 100%"
+horizontal_alignment = 2
+script = ExtResource("16_wxbdd")
+preText = "Adrenaline"
+
+[node name="drug" type="Label" parent="UIPlayerHUD/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.639216, 0.639216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+text = "Drug: 100%"
+horizontal_alignment = 2
+script = ExtResource("16_wxbdd")
+preText = "Drug"
+
+[node name="toxins" type="Label" parent="UIPlayerHUD/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.639216, 0.639216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+text = "Toxins: 100%"
+horizontal_alignment = 2
+script = ExtResource("16_wxbdd")
+preText = "Toxins"
+
+[node name="MarginContainer2" type="MarginContainer" parent="UIPlayerHUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -182.0
+offset_top = -97.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIPlayerHUD/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+alignment = 2
+
+[node name="water" type="Label" parent="UIPlayerHUD/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.639216, 0.639216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+text = "Water: 100%"
+horizontal_alignment = 2
+script = ExtResource("16_wxbdd")
+preText = "Water"
+
+[node name="satiety" type="Label" parent="UIPlayerHUD/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.639216, 0.639216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+text = "Satiety: 100%"
+horizontal_alignment = 2
+script = ExtResource("16_wxbdd")
+preText = "Satiety"
+
+[node name="energy" type="Label" parent="UIPlayerHUD/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.862745, 0.0196078, 0.0196078, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+text = "Energy: 100%"
+horizontal_alignment = 2
+script = ExtResource("16_wxbdd")
+preText = "Energy"
+
+[node name="humanoid_inventory" parent="UIPlayerHUD" instance=ExtResource("3_jldi0")]
+layout_mode = 1
+
+[node name="health_vignette" type="Panel" parent="UIPlayerHUD"]
+material = SubResource("ShaderMaterial_jtg3j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("14_lafdb")
+
+[node name="energy_vignette" type="Panel" parent="UIPlayerHUD"]
+material = SubResource("ShaderMaterial_ktowp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("14_lafdb")
+
+[node name="stand_shape_cast" type="ShapeCast3D" parent="."]
+shape = SubResource("CapsuleShape3D_xttwe")
+target_position = Vector3(0, 0, 0)
+collision_mask = 7
+
+[node name="wall_cast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+target_position = Vector3(0, 0, -1)
+collision_mask = 7
+
+[node name="climb_cast_side" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.9)
+target_position = Vector3(-0.7, 0, 0)
+collision_mask = 7
+
+[node name="climb_cast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -0.6)
+target_position = Vector3(0, -2, 0)
+collision_mask = 7
+
+[connection signal="OnValueChanged" from="humanoid_stats/satiety" to="UIPlayerHUD/MarginContainer2/VBoxContainer/satiety" method="OnStatChanged"]
+[connection signal="OnValueChanged" from="humanoid_stats/water" to="UIPlayerHUD/MarginContainer2/VBoxContainer/water" method="OnStatChanged"]
+[connection signal="OnValueChanged" from="humanoid_stats/energy" to="UIPlayerHUD/MarginContainer2/VBoxContainer/energy" method="OnStatChanged"]
+[connection signal="OnValueChanged" from="humanoid_stats/energy" to="UIPlayerHUD/energy_vignette" method="OnStatChanged"]
+[connection signal="OnValueChanged" from="humanoid_stats/blood" to="UIPlayerHUD/MarginContainer/HBoxContainer/blood_bar" method="OnStatChanged"]
+[connection signal="OnValueChanged" from="humanoid_stats/pain" to="UIPlayerHUD/MarginContainer/HBoxContainer/pain" method="OnStatChanged"]
+[connection signal="OnValueChanged" from="humanoid_stats/andrenaline" to="UIPlayerHUD/MarginContainer/HBoxContainer/adrenaline" method="OnStatChanged"]
+[connection signal="OnValueChanged" from="humanoid_stats/drug" to="UIPlayerHUD/MarginContainer/HBoxContainer/drug" method="OnStatChanged"]
+[connection signal="OnValueChanged" from="humanoid_stats/toxins" to="UIPlayerHUD/MarginContainer/HBoxContainer/toxins" method="OnStatChanged"]
+[connection signal="OnValueChanged" from="humanoid_stats/health" to="UIPlayerHUD/MarginContainer/HBoxContainer/health" method="OnStatChanged"]
+[connection signal="OnValueChanged" from="humanoid_stats/health" to="UIPlayerHUD/health_vignette" method="OnStatChanged"]
+
+[editable path="humanoid_inventory"]

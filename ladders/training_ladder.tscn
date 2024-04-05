@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://3gmp0t8xxg6c"]
+
+[ext_resource type="Script" path="res://ladders/Ladder.cs" id="1_ukrql"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j65uc"]
+size = Vector3(0.1, 4, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jvod4"]
+size = Vector3(1, 0.1, 0.12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bshly"]
+size = Vector3(1, 3.3, 0.2)
+
+[node name="training_ladder" type="StaticBody3D" node_paths=PackedStringArray("point1", "point2")]
+script = ExtResource("1_ukrql")
+point1 = NodePath("point1")
+point2 = NodePath("point2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0, 0.06)
+mesh = SubResource("BoxMesh_j65uc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0.06)
+mesh = SubResource("BoxMesh_j65uc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0, 0.14)
+mesh = SubResource("BoxMesh_jvod4")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0.4, 0.14)
+mesh = SubResource("BoxMesh_jvod4")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0.8, 0.14)
+mesh = SubResource("BoxMesh_jvod4")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 1.6, 0.14)
+mesh = SubResource("BoxMesh_jvod4")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 1.2, 0.14)
+mesh = SubResource("BoxMesh_jvod4")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, -0.4, 0.14)
+mesh = SubResource("BoxMesh_jvod4")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, -0.8, 0.14)
+mesh = SubResource("BoxMesh_jvod4")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, -1.2, 0.14)
+mesh = SubResource("BoxMesh_jvod4")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, -1.6, 0.14)
+mesh = SubResource("BoxMesh_jvod4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+shape = SubResource("BoxShape3D_bshly")
+
+[node name="point1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0.1)
+
+[node name="point2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0.1)
+
+[node name="point3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.1)

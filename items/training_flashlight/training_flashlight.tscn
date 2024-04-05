@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://byjujvvaaegs0"]
+
+[ext_resource type="Script" path="res://items/FlashlightBody.cs" id="1_xe67c"]
+[ext_resource type="PackedScene" uid="uid://bp03vkqpem8ke" path="res://storage/basic_inventory/inventory_slot.tscn" id="2_y34po"]
+[ext_resource type="Resource" uid="uid://buptene00p3si" path="res://items/training_flashlight/training_flashlight.tres" id="3_g8a80"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm7mo"]
+albedo_color = Color(0.243137, 0.611765, 0.996078, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nswh5"]
+top_radius = 0.07
+bottom_radius = 0.07
+height = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vv6r2"]
+top_radius = 0.11
+bottom_radius = 0.08
+height = 0.1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ttkt0"]
+radius = 0.08
+height = 0.4
+
+[node name="training_flashlight" type="RigidBody3D" node_paths=PackedStringArray("spot_light", "slot")]
+collision_layer = 4
+collision_mask = 7
+mass = 0.5
+script = ExtResource("1_xe67c")
+spot_light = NodePath("SpotLight3D")
+slot = NodePath("inventory_slot")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.0051282)
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("CylinderMesh_nswh5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.181388)
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("CylinderMesh_vv6r2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.0392912)
+shape = SubResource("CapsuleShape3D_ttkt0")
+
+[node name="inventory_slot" parent="." instance=ExtResource("2_y34po")]
+item = ExtResource("3_g8a80")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.177533)
+shadow_enabled = true

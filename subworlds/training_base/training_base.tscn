@@ -1,0 +1,541 @@
+[gd_scene load_steps=36 format=3 uid="uid://6d6dqu8avmgm"]
+
+[ext_resource type="Script" path="res://subworlds/Subworld.cs" id="1_u3ll1"]
+[ext_resource type="PackedScene" uid="uid://cwmsterkmu2tn" path="res://entities/player/player.tscn" id="2_4l61b"]
+[ext_resource type="Script" path="res://GrabbableObject.cs" id="2_r7tjj"]
+[ext_resource type="PackedScene" uid="uid://3gmp0t8xxg6c" path="res://ladders/training_ladder.tscn" id="3_02hjk"]
+[ext_resource type="PackedScene" uid="uid://dxmkdi2011rrl" path="res://TestThrowRigidbody.tscn" id="3_rcfus"]
+[ext_resource type="PackedScene" uid="uid://dfcm027k5v8ks" path="res://doors/basic_door_1/basic_door_1.tscn" id="3_vpeoe"]
+[ext_resource type="PackedScene" uid="uid://7xxmkk4ar12r" path="res://items/training_key/training_key.tscn" id="4_ptpuy"]
+[ext_resource type="PackedScene" uid="uid://blvledgk68tyn" path="res://items/training_backpack/training_backpack.tscn" id="5_obprl"]
+[ext_resource type="PackedScene" uid="uid://cwv2giojaq4xl" path="res://items/training_beltpack/training_beltpack.tscn" id="6_irw06"]
+[ext_resource type="PackedScene" uid="uid://byjujvvaaegs0" path="res://items/training_flashlight/training_flashlight.tscn" id="8_38cao"]
+[ext_resource type="PackedScene" uid="uid://bor2b7a33v2p5" path="res://TrainingStatsArea.tscn" id="11_nbjfm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_frrfn"]
+size = Vector3(4, 3, 0.2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_50c1f"]
+data = PackedVector3Array(-2, 1.5, 0.1, 2, 1.5, 0.1, -2, -1.5, 0.1, 2, 1.5, 0.1, 2, -1.5, 0.1, -2, -1.5, 0.1, 2, 1.5, -0.1, -2, 1.5, -0.1, 2, -1.5, -0.1, -2, 1.5, -0.1, -2, -1.5, -0.1, 2, -1.5, -0.1, 2, 1.5, 0.1, 2, 1.5, -0.1, 2, -1.5, 0.1, 2, 1.5, -0.1, 2, -1.5, -0.1, 2, -1.5, 0.1, -2, 1.5, -0.1, -2, 1.5, 0.1, -2, -1.5, -0.1, -2, 1.5, 0.1, -2, -1.5, 0.1, -2, -1.5, -0.1, 2, 1.5, 0.1, -2, 1.5, 0.1, 2, 1.5, -0.1, -2, 1.5, 0.1, -2, 1.5, -0.1, 2, 1.5, -0.1, -2, -1.5, 0.1, 2, -1.5, 0.1, -2, -1.5, -0.1, 2, -1.5, 0.1, 2, -1.5, -0.1, -2, -1.5, -0.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wjg0h"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_bfii1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3uvgt"]
+size = Vector3(1.5, 0.2, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0y5rp"]
+size = Vector3(1.5, 0.2, 6)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1uito"]
+radius = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_xcihg"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6f7xx"]
+transparency = 1
+albedo_color = Color(0.6, 0.152941, 0.0941176, 0.760784)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xafi"]
+transparency = 1
+albedo_color = Color(0.101961, 0.352941, 0.545098, 0.760784)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2mtv"]
+transparency = 1
+albedo_color = Color(0.627451, 0, 0.294118, 0.760784)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvhtd"]
+transparency = 1
+albedo_color = Color(1, 0.698039, 0.0196078, 0.760784)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3w3hn"]
+transparency = 1
+albedo_color = Color(1, 0.258824, 0, 0.760784)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wd5cp"]
+transparency = 1
+albedo_color = Color(0.862745, 0.0196078, 0.0196078, 0.760784)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3puk"]
+transparency = 1
+albedo_color = Color(0.466667, 0.0196078, 0.0196078, 0.760784)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ia87m"]
+transparency = 1
+albedo_color = Color(0.941176, 0.152941, 0, 0.760784)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbpi8"]
+transparency = 1
+albedo_color = Color(0.152941, 0.847059, 0.227451, 0.760784)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0sjd"]
+transparency = 1
+albedo_color = Color(0.14902, 0.14902, 0.14902, 0.74902)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1ud7"]
+transparency = 1
+albedo_color = Color(0.545098, 0.545098, 0.545098, 0.74902)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5627y"]
+transparency = 1
+albedo_color = Color(0.631373, 1, 0.0666667, 0.74902)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7h06"]
+transparency = 1
+albedo_color = Color(0.32549, 0.529412, 0, 0.74902)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gexip"]
+
+[sub_resource type="Sky" id="Sky_i00ok"]
+sky_material = SubResource("ProceduralSkyMaterial_gexip")
+
+[sub_resource type="Environment" id="Environment_aag4c"]
+background_mode = 2
+sky = SubResource("Sky_i00ok")
+ssao_enabled = true
+
+[node name="training_base" type="SubViewportContainer" node_paths=PackedStringArray("items_container", "entity_container", "other_container")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("1_u3ll1")
+items_container = NodePath("subworld/subworld/items")
+entity_container = NodePath("subworld/subworld/entities")
+other_container = NodePath("subworld/subworld/other")
+
+[node name="subworld" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="subworld" type="Node3D" parent="subworld"]
+
+[node name="blocks" type="Node" parent="subworld/subworld"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="subworld/subworld/blocks"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -3.5, 0, 0)
+use_collision = true
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="subworld/subworld/blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+use_collision = true
+size = Vector3(100, 100, 100)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+operation = 2
+use_collision = true
+size = Vector3(10, 10, 10)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 4, -12)
+operation = 2
+use_collision = true
+size = Vector3(5, 5, 10)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4027, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(26.9325, 10, 10)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, -8.2)
+operation = 2
+size = Vector3(2, 3, 6)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, -3.5, -0.2)
+operation = 2
+size = Vector3(2, 3, 2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.8, -5.1)
+operation = 2
+size = Vector3(1.6, 2.4, 0.2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 0.982186, -0.187913, 0, 0.187913, 0.982186, 0, 1.26841, -5.38801)
+operation = 2
+size = Vector3(10, 6, 2.2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, -6.5)
+operation = 2
+size = Vector3(1.2, 2.2, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.1, -8.5)
+operation = 2
+size = Vector3(1.2, 1.2, 5)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36055, 3.9, -8.5)
+operation = 2
+size = Vector3(1.2, 1.2, 6)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.18923, 3, -10.4)
+operation = 2
+size = Vector3(1.2, 3, 1.2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="subworld/subworld/blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, 1)
+mesh = SubResource("BoxMesh_frrfn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="subworld/subworld/blocks/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="subworld/subworld/blocks/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_50c1f")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="subworld/subworld/blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 7.8, -5.91246)
+use_collision = true
+size = Vector3(1.2, 0.2, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="subworld/subworld/blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 6.4, -6.049)
+use_collision = true
+size = Vector3(2, 0.2, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="subworld/subworld/blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 5.5, -0.541148)
+use_collision = true
+size = Vector3(5, 0.2, 5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="subworld/subworld/blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7.1, 0.257481)
+use_collision = true
+size = Vector3(2, 3, 3.4)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, -0.757481)
+operation = 2
+size = Vector3(2, 2.2, 1.2)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="subworld/subworld/blocks/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0.942519)
+operation = 2
+size = Vector3(2, 1.2, 1.2)
+
+[node name="TestThrowRigidbody" parent="subworld/subworld/blocks" instance=ExtResource("3_rcfus")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.10005, 1.78567, 3.0007)
+
+[node name="training_ladder" parent="subworld/subworld/blocks" instance=ExtResource("3_02hjk")]
+transform = Transform3D(1, 0, 0, 0, 0.983044, 0.183368, 0, -0.183368, 0.983044, 3.6235, 1.62597, -4.55442)
+
+[node name="training_ladder2" parent="subworld/subworld/blocks" instance=ExtResource("3_02hjk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 4.38486, -4.03994)
+
+[node name="lights" type="Node" parent="subworld/subworld"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="subworld/subworld/lights"]
+transform = Transform3D(0.7674, -0.343857, 0.541164, 0, 0.844029, 0.536298, -0.641168, -0.411555, 0.647708, 0, 0, 0)
+shadow_enabled = true
+shadow_reverse_cull_face = true
+
+[node name="OmniLight3D4" type="SpotLight3D" parent="subworld/subworld/lights"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9.95609, 0)
+shadow_enabled = true
+spot_range = 17.6602
+spot_attenuation = 0.812252
+spot_angle = 78.77
+spot_angle_attenuation = 0.0140821
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="subworld/subworld/lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7492, 6.23676, 0)
+shadow_enabled = true
+omni_range = 9.58463
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="subworld/subworld/lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49851, -5.99966)
+light_color = Color(0.976471, 0.0235294, 0.00784314, 1)
+shadow_enabled = true
+omni_range = 9.49059
+
+[node name="objects" type="Node" parent="subworld/subworld"]
+
+[node name="ball" type="RigidBody3D" parent="subworld/subworld/objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9146, 1.60092, 0)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("2_r7tjj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="subworld/subworld/objects/ball"]
+shape = SubResource("SphereShape3D_wjg0h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="subworld/subworld/objects/ball"]
+mesh = SubResource("SphereMesh_bfii1")
+
+[node name="plane" type="RigidBody3D" parent="subworld/subworld/objects"]
+transform = Transform3D(1, 0, 0, 0, 0.937762, -0.347279, 0, 0.347279, 0.937762, -3.5, 2.40601, -2.51294)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("2_r7tjj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="subworld/subworld/objects/plane"]
+shape = SubResource("BoxShape3D_3uvgt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="subworld/subworld/objects/plane"]
+mesh = SubResource("BoxMesh_0y5rp")
+
+[node name="big_ball" type="RigidBody3D" parent="subworld/subworld/objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65401, 1.60092, 2.50798)
+collision_layer = 4
+collision_mask = 7
+mass = 2.0
+script = ExtResource("2_r7tjj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="subworld/subworld/objects/big_ball"]
+shape = SubResource("SphereShape3D_1uito")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="subworld/subworld/objects/big_ball"]
+mesh = SubResource("SphereMesh_xcihg")
+
+[node name="entities" type="Node" parent="subworld/subworld"]
+
+[node name="player" parent="subworld/subworld/entities" instance=ExtResource("2_4l61b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08914, 0, 0)
+
+[node name="doors" type="Node" parent="subworld/subworld"]
+
+[node name="basic_door_1" parent="subworld/subworld/doors" instance=ExtResource("3_vpeoe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.1)
+
+[node name="items" type="Node" parent="subworld/subworld"]
+
+[node name="training_key" parent="subworld/subworld/items" instance=ExtResource("4_ptpuy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.969805, 2.06121, -1.65848)
+
+[node name="training_backpack" parent="subworld/subworld/items" instance=ExtResource("5_obprl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.03972, -3.4974)
+
+[node name="training_beltpack" parent="subworld/subworld/items" instance=ExtResource("6_irw06")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59882, 1.85292, 3.85282)
+
+[node name="training_flashlight" parent="subworld/subworld/items" instance=ExtResource("8_38cao")]
+transform = Transform3D(-0.906882, 0, -0.421384, 0, 1, 0, 0.421384, 0, -0.906882, -0.949767, 0.261723, -10.9508)
+
+[node name="other" type="Node" parent="subworld/subworld"]
+
+[node name="satiety_trigger" type="Node3D" parent="subworld/subworld/other"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 0, -4.2)
+
+[node name="+satiety+" parent="subworld/subworld/other/satiety_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.3, 0)
+value = 1.0
+
+[node name="-satiety-" parent="subworld/subworld/other/satiety_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
+value = -1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/satiety_trigger/-satiety-" index="1"]
+material_override = SubResource("StandardMaterial3D_6f7xx")
+
+[node name="Label3D" parent="subworld/subworld/other/satiety_trigger/-satiety-" index="2"]
+text = "- satiety -"
+
+[node name="water_trigger" type="Node3D" parent="subworld/subworld/other"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9, 0, -4.2)
+
+[node name="+water+" parent="subworld/subworld/other/water_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.3, 0)
+estat = 1
+value = 1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/water_trigger/+water+" index="1"]
+material_override = SubResource("StandardMaterial3D_0xafi")
+
+[node name="Label3D" parent="subworld/subworld/other/water_trigger/+water+" index="2"]
+text = "+ water +"
+
+[node name="-water-" parent="subworld/subworld/other/water_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
+estat = 1
+value = -1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/water_trigger/-water-" index="1"]
+material_override = SubResource("StandardMaterial3D_l2mtv")
+
+[node name="Label3D" parent="subworld/subworld/other/water_trigger/-water-" index="2"]
+text = "- water -"
+
+[node name="energy_trigger" type="Node3D" parent="subworld/subworld/other"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2, 0, -4.2)
+
+[node name="+energy+" parent="subworld/subworld/other/energy_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.3, 0)
+estat = 2
+value = 1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/energy_trigger/+energy+" index="1"]
+material_override = SubResource("StandardMaterial3D_lvhtd")
+
+[node name="Label3D" parent="subworld/subworld/other/energy_trigger/+energy+" index="2"]
+text = "+ energy +"
+
+[node name="-energy-" parent="subworld/subworld/other/energy_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
+estat = 2
+value = -1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/energy_trigger/-energy-" index="1"]
+material_override = SubResource("StandardMaterial3D_3w3hn")
+
+[node name="Label3D" parent="subworld/subworld/other/energy_trigger/-energy-" index="2"]
+text = "- energy -"
+
+[node name="blood_trigger" type="Node3D" parent="subworld/subworld/other"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 0, -4.2)
+
+[node name="+blood+" parent="subworld/subworld/other/blood_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.3, 0)
+estat = 3
+value = 1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/blood_trigger/+blood+" index="1"]
+material_override = SubResource("StandardMaterial3D_wd5cp")
+
+[node name="Label3D" parent="subworld/subworld/other/blood_trigger/+blood+" index="2"]
+text = "+ blood +"
+
+[node name="-blood-" parent="subworld/subworld/other/blood_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
+estat = 3
+value = -1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/blood_trigger/-blood-" index="1"]
+material_override = SubResource("StandardMaterial3D_b3puk")
+
+[node name="Label3D" parent="subworld/subworld/other/blood_trigger/-blood-" index="2"]
+text = "- blood -"
+
+[node name="pain_trigger" type="Node3D" parent="subworld/subworld/other"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.8, 0, -4.2)
+
+[node name="+pain+" parent="subworld/subworld/other/pain_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.3, 0)
+estat = 4
+value = 1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/pain_trigger/+pain+" index="1"]
+material_override = SubResource("StandardMaterial3D_ia87m")
+
+[node name="Label3D" parent="subworld/subworld/other/pain_trigger/+pain+" index="2"]
+text = "+ pain +"
+
+[node name="-pain-" parent="subworld/subworld/other/pain_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
+estat = 4
+value = -1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/pain_trigger/-pain-" index="1"]
+material_override = SubResource("StandardMaterial3D_qbpi8")
+
+[node name="Label3D" parent="subworld/subworld/other/pain_trigger/-pain-" index="2"]
+text = "- pain -"
+
+[node name="adrenaline_trigger" type="Node3D" parent="subworld/subworld/other"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1, 0, -4.2)
+
+[node name="+adrenaline+" parent="subworld/subworld/other/adrenaline_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.3, 0)
+estat = 5
+value = 1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/adrenaline_trigger/+adrenaline+" index="1"]
+material_override = SubResource("StandardMaterial3D_f0sjd")
+
+[node name="Label3D" parent="subworld/subworld/other/adrenaline_trigger/+adrenaline+" index="2"]
+text = "+ adrenaline +"
+
+[node name="-adrenaline-" parent="subworld/subworld/other/adrenaline_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
+estat = 5
+value = -1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/adrenaline_trigger/-adrenaline-" index="1"]
+material_override = SubResource("StandardMaterial3D_d1ud7")
+
+[node name="Label3D" parent="subworld/subworld/other/adrenaline_trigger/-adrenaline-" index="2"]
+text = "- adrenaline -"
+
+[node name="drug_trigger" type="Node3D" parent="subworld/subworld/other"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.8, 0, 0.0999999)
+
+[node name="+drug+" parent="subworld/subworld/other/drug_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.3, 0)
+estat = 6
+value = 1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/drug_trigger/+drug+" index="1"]
+material_override = SubResource("StandardMaterial3D_f0sjd")
+
+[node name="Label3D" parent="subworld/subworld/other/drug_trigger/+drug+" index="2"]
+text = "+ drug +"
+
+[node name="-drug-" parent="subworld/subworld/other/drug_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
+estat = 6
+value = -1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/drug_trigger/-drug-" index="1"]
+material_override = SubResource("StandardMaterial3D_d1ud7")
+
+[node name="Label3D" parent="subworld/subworld/other/drug_trigger/-drug-" index="2"]
+text = "- drug -"
+
+[node name="toxins_trigger" type="Node3D" parent="subworld/subworld/other"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 25.1, 0, 0.0999999)
+
+[node name="+toxins+" parent="subworld/subworld/other/toxins_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.3, 0)
+estat = 7
+value = 1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/toxins_trigger/+toxins+" index="1"]
+material_override = SubResource("StandardMaterial3D_5627y")
+
+[node name="Label3D" parent="subworld/subworld/other/toxins_trigger/+toxins+" index="2"]
+text = "+ toxins +"
+
+[node name="-toxins-" parent="subworld/subworld/other/toxins_trigger" instance=ExtResource("11_nbjfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
+estat = 7
+value = -1.0
+
+[node name="MeshInstance3D" parent="subworld/subworld/other/toxins_trigger/-toxins-" index="1"]
+material_override = SubResource("StandardMaterial3D_j7h06")
+
+[node name="Label3D" parent="subworld/subworld/other/toxins_trigger/-toxins-" index="2"]
+text = "- toxins -"
+
+[node name="Label3D" type="Label3D" parent="subworld/subworld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65955, -1.54748)
+text = "Привет"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="subworld/subworld"]
+environment = SubResource("Environment_aag4c")
+
+[editable path="subworld/subworld/other/satiety_trigger/+satiety+"]
+[editable path="subworld/subworld/other/satiety_trigger/-satiety-"]
+[editable path="subworld/subworld/other/water_trigger/+water+"]
+[editable path="subworld/subworld/other/water_trigger/-water-"]
+[editable path="subworld/subworld/other/energy_trigger/+energy+"]
+[editable path="subworld/subworld/other/energy_trigger/-energy-"]
+[editable path="subworld/subworld/other/blood_trigger/+blood+"]
+[editable path="subworld/subworld/other/blood_trigger/-blood-"]
+[editable path="subworld/subworld/other/pain_trigger/+pain+"]
+[editable path="subworld/subworld/other/pain_trigger/-pain-"]
+[editable path="subworld/subworld/other/adrenaline_trigger/+adrenaline+"]
+[editable path="subworld/subworld/other/adrenaline_trigger/-adrenaline-"]
+[editable path="subworld/subworld/other/drug_trigger/+drug+"]
+[editable path="subworld/subworld/other/drug_trigger/-drug-"]
+[editable path="subworld/subworld/other/toxins_trigger/+toxins+"]
+[editable path="subworld/subworld/other/toxins_trigger/-toxins-"]

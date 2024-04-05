@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://d03rmtc21lvor"]
+
+[ext_resource type="Script" path="res://storage/humanoid_inventory/HumanoidInventory.cs" id="1_q763o"]
+[ext_resource type="Script" path="res://storage/basic_inventory/HoldingSlot.cs" id="2_2mnmj"]
+[ext_resource type="Script" path="res://storage/basic_inventory/InventorySlot.cs" id="2_jpqxw"]
+[ext_resource type="Script" path="res://storage/humanoid_inventory/HumanoidBackSlot.cs" id="3_6gv8f"]
+[ext_resource type="Script" path="res://storage/humanoid_inventory/HumanoidBeltSlot.cs" id="4_djqnv"]
+
+[node name="humanoid_inventory" type="Node" node_paths=PackedStringArray("left_hand_slot", "right_hand_slot", "helmet_slot", "chest_slot", "pants_slot", "gloves_slot", "boots_slot", "back_slot", "belt_slot")]
+script = ExtResource("1_q763o")
+left_hand_slot = NodePath("left_hand")
+right_hand_slot = NodePath("right_hand")
+helmet_slot = NodePath("helmet")
+chest_slot = NodePath("chest")
+pants_slot = NodePath("pants")
+gloves_slot = NodePath("gloves")
+boots_slot = NodePath("boots")
+back_slot = NodePath("back")
+belt_slot = NodePath("belt")
+slots_count = 0
+
+[node name="left_hand" type="Node" parent="."]
+script = ExtResource("2_2mnmj")
+
+[node name="right_hand" type="Node" parent="."]
+script = ExtResource("2_2mnmj")
+
+[node name="helmet" type="Node" parent="."]
+script = ExtResource("2_jpqxw")
+
+[node name="chest" type="Node" parent="."]
+script = ExtResource("2_jpqxw")
+
+[node name="pants" type="Node" parent="."]
+script = ExtResource("2_jpqxw")
+
+[node name="gloves" type="Node" parent="."]
+script = ExtResource("2_jpqxw")
+
+[node name="boots" type="Node" parent="."]
+script = ExtResource("2_jpqxw")
+
+[node name="back" type="Node" parent="."]
+script = ExtResource("3_6gv8f")
+
+[node name="belt" type="Node" parent="."]
+script = ExtResource("4_djqnv")

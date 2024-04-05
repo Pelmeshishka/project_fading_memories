@@ -1,0 +1,203 @@
+[gd_scene load_steps=4 format=3 uid="uid://2w8028h127wo"]
+
+[ext_resource type="Script" path="res://storage/humanoid_inventory/ui/UIHumanoidInventory.cs" id="1_3pvc4"]
+[ext_resource type="PackedScene" uid="uid://y8eufq3de1oo" path="res://storage/basic_inventory/ui/ui_inventory_slot.tscn" id="2_dx2jh"]
+[ext_resource type="PackedScene" uid="uid://nrvnoac7bufj" path="res://storage/basic_inventory/ui/ui_inventory.tscn" id="3_kmmeh"]
+
+[node name="humanoid_inventory" type="HBoxContainer" node_paths=PackedStringArray("fast_plane", "left_hand_slot", "right_hand_slot", "belt_inventory", "equipment_plane", "helmet_slot", "chest_slot", "pants_slot", "gloves_slot", "boots_slot", "back_slot", "belt_slot")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -247.0
+offset_right = 376.0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_3pvc4")
+fast_plane = NodePath("fast_plane")
+left_hand_slot = NodePath("fast_plane/hands_plane/MarginContainer/VBoxContainer/HBoxContainer2/left_hand")
+right_hand_slot = NodePath("fast_plane/hands_plane/MarginContainer/VBoxContainer/HBoxContainer2/right_hand")
+belt_inventory = NodePath("fast_plane/belt_inventory")
+equipment_plane = NodePath("equipment_plane")
+helmet_slot = NodePath("equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer/helmet")
+chest_slot = NodePath("equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer/chest")
+pants_slot = NodePath("equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer/pants")
+gloves_slot = NodePath("equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer2/gloves")
+boots_slot = NodePath("equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer2/boots")
+back_slot = NodePath("equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer3/back")
+belt_slot = NodePath("equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer3/belt")
+is_draggable = false
+
+[node name="equipment_plane" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ColorRect" type="ColorRect" parent="equipment_plane"]
+layout_mode = 2
+color = Color(0.0941176, 0.105882, 0.121569, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="equipment_plane"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="equipment_plane/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="equipment_plane/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+text = "Equipment"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="gloves" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer2" instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+
+[node name="boots" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer2" instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="helmet" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer" instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+
+[node name="chest" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer" instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+
+[node name="pants" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer" instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="back" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer3" instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+
+[node name="belt" parent="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer3" instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+canOpenInventory = false
+
+[node name="fast_plane" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="hands_plane" type="PanelContainer" parent="fast_plane"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="ColorRect" type="ColorRect" parent="fast_plane/hands_plane"]
+layout_mode = 2
+color = Color(0.0941176, 0.105882, 0.121569, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="fast_plane/hands_plane"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="fast_plane/hands_plane/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="fast_plane/hands_plane/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hands"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="fast_plane/hands_plane/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="left_hand" parent="fast_plane/hands_plane/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+
+[node name="right_hand" parent="fast_plane/hands_plane/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+
+[node name="belt_inventory" parent="fast_plane" instance=ExtResource("3_kmmeh")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+is_draggable = false
+
+[node name="MarginContainer" parent="fast_plane/belt_inventory" index="1"]
+size_flags_vertical = 1
+
+[node name="Label" parent="fast_plane/belt_inventory/MarginContainer/VBoxContainer" index="0"]
+text = "belt"
+
+[node name="inventory_slot2" parent="fast_plane/belt_inventory/MarginContainer/VBoxContainer/CenterContainer/GridContainer" index="1" node_paths=PackedStringArray("icon", "count") instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+icon = NodePath("../inventory_slot/MarginContainer/TextureRect")
+count = NodePath("../inventory_slot/MarginContainer/Label")
+
+[node name="inventory_slot3" parent="fast_plane/belt_inventory/MarginContainer/VBoxContainer/CenterContainer/GridContainer" index="2" node_paths=PackedStringArray("icon", "count") instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+icon = NodePath("../inventory_slot/MarginContainer/TextureRect")
+count = NodePath("../inventory_slot/MarginContainer/Label")
+
+[node name="inventory_slot4" parent="fast_plane/belt_inventory/MarginContainer/VBoxContainer/CenterContainer/GridContainer" index="3" node_paths=PackedStringArray("icon", "count") instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+icon = NodePath("../inventory_slot/MarginContainer/TextureRect")
+count = NodePath("../inventory_slot/MarginContainer/Label")
+
+[node name="inventory_slot5" parent="fast_plane/belt_inventory/MarginContainer/VBoxContainer/CenterContainer/GridContainer" index="4" node_paths=PackedStringArray("icon", "count") instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+icon = NodePath("../inventory_slot/MarginContainer/TextureRect")
+count = NodePath("../inventory_slot/MarginContainer/Label")
+
+[node name="inventory_slot6" parent="fast_plane/belt_inventory/MarginContainer/VBoxContainer/CenterContainer/GridContainer" index="5" node_paths=PackedStringArray("icon", "count") instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+icon = NodePath("../inventory_slot/MarginContainer/TextureRect")
+count = NodePath("../inventory_slot/MarginContainer/Label")
+
+[node name="inventory_slot7" parent="fast_plane/belt_inventory/MarginContainer/VBoxContainer/CenterContainer/GridContainer" index="6" node_paths=PackedStringArray("icon", "count") instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+icon = NodePath("../inventory_slot/MarginContainer/TextureRect")
+count = NodePath("../inventory_slot/MarginContainer/Label")
+
+[node name="inventory_slot8" parent="fast_plane/belt_inventory/MarginContainer/VBoxContainer/CenterContainer/GridContainer" index="7" node_paths=PackedStringArray("icon", "count") instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+icon = NodePath("../inventory_slot/MarginContainer/TextureRect")
+count = NodePath("../inventory_slot/MarginContainer/Label")
+
+[node name="inventory_slot9" parent="fast_plane/belt_inventory/MarginContainer/VBoxContainer/CenterContainer/GridContainer" index="8" node_paths=PackedStringArray("icon", "count") instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+icon = NodePath("../inventory_slot/MarginContainer/TextureRect")
+count = NodePath("../inventory_slot/MarginContainer/Label")
+
+[node name="inventory_slot10" parent="fast_plane/belt_inventory/MarginContainer/VBoxContainer/CenterContainer/GridContainer" index="9" node_paths=PackedStringArray("icon", "count") instance=ExtResource("2_dx2jh")]
+layout_mode = 2
+icon = NodePath("../inventory_slot/MarginContainer/TextureRect")
+count = NodePath("../inventory_slot/MarginContainer/Label")
+
+[editable path="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer2/gloves"]
+[editable path="equipment_plane/MarginContainer/HBoxContainer/VBoxContainer5/HBoxContainer/VBoxContainer2/boots"]
+[editable path="fast_plane/belt_inventory"]

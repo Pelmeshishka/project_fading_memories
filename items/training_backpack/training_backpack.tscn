@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://blvledgk68tyn"]
+
+[ext_resource type="Script" path="res://items/ItemBody.cs" id="1_pal72"]
+[ext_resource type="PackedScene" uid="uid://bp03vkqpem8ke" path="res://storage/basic_inventory/inventory_slot.tscn" id="2_fo1pd"]
+[ext_resource type="Resource" uid="uid://b1xtuwnd1jjem" path="res://items/training_backpack/training_backpack.tres" id="3_7ctpo"]
+[ext_resource type="Script" path="res://storage/basic_inventory/Inventory.cs" id="4_vh55n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm7mo"]
+albedo_color = Color(0.243137, 0.611765, 0.996078, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3vep5"]
+size = Vector3(0.7, 1, 0.7)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qdrtr"]
+size = Vector3(0.75, 0.3, 0.75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8vfuk"]
+size = Vector3(0.1, 0.3, 0.1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ku6t5"]
+radius = 0.4
+height = 1.4
+
+[node name="training_backpack" type="RigidBody3D" node_paths=PackedStringArray("slot")]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_pal72")
+slot = NodePath("inventory_slot")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("BoxMesh_3vep5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.979834, -0.199813, 0, 0.199813, 0.979834, 0, 0.537638, 0.0335819)
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("BoxMesh_qdrtr")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.979834, -0.199813, 0, 0.199813, 0.979834, 0, 0.328587, 0.386141)
+material_override = SubResource("StandardMaterial3D_jm7mo")
+mesh = SubResource("BoxMesh_8vfuk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ku6t5")
+
+[node name="inventory_slot" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("2_fo1pd")]
+item = ExtResource("3_7ctpo")
+inventory = NodePath("../inventory")
+
+[node name="inventory" type="Node" parent="."]
+script = ExtResource("4_vh55n")

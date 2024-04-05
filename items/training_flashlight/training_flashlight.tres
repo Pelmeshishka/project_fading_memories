@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://buptene00p3si"]
+
+[ext_resource type="Texture2D" uid="uid://beeteglvqfhl7" path="res://items/training_key/training_key.png" id="1_uef15"]
+[ext_resource type="Script" path="res://items/Flashlight.cs" id="2_fovso"]
+
+[resource]
+script = ExtResource("2_fovso")
+isActive = false
+icon = ExtResource("1_uef15")
+identifier = "training_flashlight"
+max_count = 1
+count = 1

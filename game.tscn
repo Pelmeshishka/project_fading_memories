@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8thapoej4luf"]
+
+[ext_resource type="Script" path="res://Game.cs" id="1_0kwiq"]
+[ext_resource type="Script" path="res://subworlds/Subworlds.cs" id="2_37mmr"]
+[ext_resource type="PackedScene" uid="uid://6d6dqu8avmgm" path="res://subworlds/training_base/training_base.tscn" id="3_6ueyv"]
+[ext_resource type="Script" path="res://UIPlayerGUI.cs" id="4_igpmd"]
+[ext_resource type="PackedScene" uid="uid://cjpff4345nmp4" path="res://storage/drag_and_drop/ui_dad_slot.tscn" id="5_tvuxa"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_0kwiq")
+
+[node name="subworlds" type="Node" parent="."]
+script = ExtResource("2_37mmr")
+
+[node name="training_base" parent="subworlds" instance=ExtResource("3_6ueyv")]
+
+[node name="PlayerGUI" type="Control" parent="." node_paths=PackedStringArray("inventory_container", "ui_dad_slot")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_igpmd")
+inventory_container = NodePath("inventory_container")
+ui_dad_slot = NodePath("ui_dad_slot")
+
+[node name="inventory_container" type="Control" parent="PlayerGUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ui_dad_slot" parent="PlayerGUI" instance=ExtResource("5_tvuxa")]
+layout_mode = 1

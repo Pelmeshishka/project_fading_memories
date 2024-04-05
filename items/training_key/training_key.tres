@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://2g2og4r1eutu"]
+
+[ext_resource type="Texture2D" uid="uid://beeteglvqfhl7" path="res://items/training_key/training_key.png" id="1_j3a85"]
+[ext_resource type="Script" path="res://items/Key.cs" id="2_sqvg0"]
+
+[resource]
+script = ExtResource("2_sqvg0")
+icon = ExtResource("1_j3a85")
+identifier = "training_key"
+max_count = 1
+count = 1

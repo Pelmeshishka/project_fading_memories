@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dqf0q12aca2il"]
+
+[ext_resource type="Texture2D" uid="uid://bpct7gwoe4ats" path="res://items/training_beltpack/training_beltpack.png" id="1_75ktq"]
+[ext_resource type="Script" path="res://items/Beltpack.cs" id="1_epeuk"]
+
+[resource]
+script = ExtResource("1_epeuk")
+icon = ExtResource("1_75ktq")
+identifier = "training_beltpack"
+max_count = 1
+count = 1
